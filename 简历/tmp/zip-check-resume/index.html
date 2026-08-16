@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="赵梓晨的个人在线简历：华南理工大学电子科学与技术专业，专注 AI 应用与创意技术实践。">
+    <meta name="author" content="赵梓晨">
+    <meta name="theme-color" content="#f4f7f5">
+    <meta property="og:title" content="赵梓晨｜个人在线简历">
+    <meta property="og:description" content="电子科学与技术 × AI 应用 × 创意实践">
+    <meta property="og:type" content="profile">
+    <title>赵梓晨｜个人在线简历</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <style>
+        :root { --paper: #f4f7f5; --coral: #de584a; }
+        *, *::before, *::after { box-sizing: border-box; }
+        html, body { min-width: 320px; margin: 0; background: var(--paper); }
+        .reading-progress { position: fixed; inset: 0 0 auto; z-index: 120; height: 3px; pointer-events: none; }
+        .reading-progress span { display: block; width: 0; height: 100%; background: var(--coral); }
+    </style>
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body id="top">
+    <a class="skip-link" href="#main">跳到主要内容</a>
+    <div class="reading-progress" aria-hidden="true"><span id="readingProgress"></span></div>
+
+    <header class="site-header" id="siteHeader">
+        <a class="brand" href="#top" aria-label="返回首页">
+            <span class="brand__mark" aria-hidden="true">Z</span>
+            <span>赵梓晨</span>
+        </a>
+
+        <button class="icon-button nav-toggle" id="navToggle" type="button" aria-label="打开导航" aria-expanded="false" aria-controls="siteNav">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+
+        <nav class="site-nav" id="siteNav" aria-label="主要导航">
+            <a href="#profile">简介</a>
+            <a href="#experience">经历</a>
+            <a href="#projects">项目</a>
+            <a href="#skills">技能</a>
+            <a href="#awards">证书</a>
+            <a href="#contact">联系</a>
+        </nav>
+
+        <div class="header-actions">
+            <button class="icon-button" id="themeToggle" type="button" aria-label="切换深浅色模式" title="切换深浅色模式">
+                <svg class="theme-icon theme-icon--moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg>
+                <svg class="theme-icon theme-icon--sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"/></svg>
+            </button>
+            <button class="icon-button" id="printBtn" type="button" aria-label="打印或导出 PDF" title="打印或导出 PDF">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>
+            </button>
+        </div>
+    </header>
+
+    <main id="main">
+        <section class="hero shell" aria-labelledby="heroName">
+            <div class="hero__copy reveal">
+                <p class="eyebrow">PORTFOLIO · 2026</p>
+                <h1 id="heroName">
+                    <span class="hero__english">ZHAO ZICHEN</span>
+                    <span class="hero__chinese">赵梓晨</span>
+                </h1>
+                <p class="hero__role" id="heroRole"></p>
+                <p class="hero__summary" id="heroSummary"></p>
+                <div class="hero__actions">
+                    <a class="button button--quiet" href="#contact">与我联系</a>
+                </div>
+                <ul class="hero__meta" id="heroMeta" aria-label="基本信息"></ul>
+            </div>
+
+            <div class="hero__visual reveal" aria-label="赵梓晨个人标识">
+                <div class="monogram" data-parallax data-parallax-speed="0.16" aria-hidden="true">
+                    <span>Z</span><span>Z</span><span>C</span>
+                </div>
+                <div class="hero__signal">
+                    <span class="signal-dot" aria-hidden="true"></span>
+                    <span>学习中 · 创作中</span>
+                </div>
+                <p>ENGINEERING × AI × MUSIC</p>
+            </div>
+        </section>
+
+        <section class="impact" aria-label="个人亮点">
+            <div class="shell impact__grid" id="highlightsGrid"></div>
+        </section>
+
+        <section class="section shell" id="profile" aria-labelledby="profileTitle">
+            <div class="section-heading reveal" data-parallax data-parallax-speed="0.08">
+                <p class="section-index">01 / PROFILE</p>
+                <h2 id="profileTitle">理工科底色，<br>创意型表达。</h2>
+            </div>
+            <div class="profile-layout">
+                <div class="profile-intro reveal">
+                    <p class="profile-intro__lead" id="profileLead"></p>
+                    <div class="education" id="educationList"></div>
+                </div>
+                <div class="interest-list reveal" id="interestList" aria-label="个人特长与兴趣"></div>
+            </div>
+        </section>
+
+        <section class="section section--tint" id="experience" aria-labelledby="experienceTitle">
+            <div class="shell">
+                <div class="section-heading section-heading--row reveal" data-parallax data-parallax-speed="0.07">
+                    <div>
+                        <p class="section-index">02 / EXPERIENCE</p>
+                        <h2 id="experienceTitle">实践经历</h2>
+                    </div>
+                    <p>不虚构岗位，以真实学习与项目过程呈现行动和结果。</p>
+                </div>
+                <div class="experience-list" id="experienceList"></div>
+            </div>
+        </section>
+
+        <section class="section shell" id="projects" aria-labelledby="projectsTitle">
+            <div class="section-heading section-heading--row reveal" data-parallax data-parallax-speed="0.07">
+                <div>
+                    <p class="section-index">03 / SELECTED WORK</p>
+                    <h2 id="projectsTitle">代表项目</h2>
+                </div>
+                <p>从需求拆解、交互设计到工程验收，均由本人独立完成。</p>
+            </div>
+            <div class="tabs reveal" id="projectTabs" role="tablist" aria-label="项目分类"></div>
+            <div class="project-grid" id="projectGrid" aria-live="polite"></div>
+        </section>
+
+        <section class="section section--dark" id="skills" aria-labelledby="skillsTitle">
+            <div class="shell">
+                <div class="section-heading section-heading--row reveal" data-parallax data-parallax-speed="0.07">
+                    <div>
+                        <p class="section-index">04 / CAPABILITIES</p>
+                        <h2 id="skillsTitle">技能矩阵</h2>
+                    </div>
+                    <p>以可落地的工具链连接工程学习、内容表达与音乐创作。</p>
+                </div>
+                <div class="skill-grid" id="skillsGrid"></div>
+            </div>
+        </section>
+
+        <section class="section shell" id="awards" aria-labelledby="awardsTitle">
+                <div class="section-heading section-heading--row reveal" data-parallax data-parallax-speed="0.07">
+                <div>
+                    <p class="section-index">05 / CREDENTIALS</p>
+                    <h2 id="awardsTitle">证书与认证</h2>
+                </div>
+                <p>图片经过压缩优化；点击可查看完整证书。</p>
+            </div>
+            <div class="award-grid" id="awardsGrid"></div>
+        </section>
+
+        <section class="contact-band" id="contact" aria-labelledby="contactTitle">
+            <div class="shell contact-layout">
+                <div class="reveal" data-parallax data-parallax-speed="0.08">
+                    <p class="section-index">06 / CONTACT</p>
+                    <h2 id="contactTitle">期待一次<br>有内容的交流。</h2>
+                </div>
+                <div class="contact-list reveal" id="contactList"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="shell">
+            <p>© <span id="footerYear"></span> 赵梓晨</p>
+            <p>原生 HTML / CSS / JavaScript 构建 · 最后更新 <span id="footerDate"></span></p>
+        </div>
+    </footer>
+
+    <button class="back-top icon-button" id="backTop" type="button" aria-label="返回顶部" title="返回顶部">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg>
+    </button>
+
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightboxTitle" hidden>
+        <button class="lightbox__close icon-button" id="lightboxClose" type="button" aria-label="关闭证书大图">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+        <figure>
+            <img id="lightboxImage" src="" alt="" loading="lazy" decoding="async">
+            <figcaption id="lightboxTitle"></figcaption>
+        </figure>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <noscript>
+        <p class="noscript">请启用 JavaScript 后刷新页面，以查看完整简历内容。</p>
+    </noscript>
+    <script src="js/main.js" defer></script>
+</body>
+</html>

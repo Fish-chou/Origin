@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="赵梓晨原创浪尖儿社区主题坦克大战小游戏，支持键盘与触屏操作。">
+    <meta name="author" content="赵梓晨">
+    <meta name="theme-color" content="#111713">
+    <title>浪尖儿社区保卫战｜赵梓晨原创坦克大战</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/game.css">
+</head>
+<body>
+    <header class="game-header">
+        <a class="back-link" href="../index.html" title="返回个人简历" aria-label="返回个人简历">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+            <span>个人简历</span>
+        </a>
+        <div class="game-brand">
+            <span class="game-brand__mark" aria-hidden="true">ZZC</span>
+            <div>
+                <strong>浪尖儿社区保卫战</strong>
+                <small>TANK DEFENSE</small>
+            </div>
+        </div>
+        <div class="game-actions">
+            <button class="icon-button" id="muteButton" type="button" aria-label="关闭音效" title="关闭音效">
+                <svg class="sound-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5ZM15.5 8.5a5 5 0 0 1 0 7M18 6a8.5 8.5 0 0 1 0 12"/></svg>
+                <svg class="sound-off" viewBox="0 0 24 24" aria-hidden="true"><path d="m11 5-5 4H2v6h4l5 4V5ZM22 9l-6 6M16 9l6 6"/></svg>
+            </button>
+            <button class="icon-button" id="pauseButton" type="button" aria-label="暂停游戏" title="暂停游戏">
+                <svg class="pause-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14"/></svg>
+                <svg class="play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7V5Z"/></svg>
+            </button>
+            <button class="icon-button fullscreen-button" id="fullscreenButton" type="button" aria-label="进入全屏" title="进入全屏">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></svg>
+            </button>
+        </div>
+    </header>
+
+    <main class="game-shell">
+        <section class="hud" aria-label="游戏状态">
+            <div class="hud__item">
+                <span>得分</span>
+                <strong id="scoreValue">0000</strong>
+            </div>
+            <div class="hud__item">
+                <span>波次</span>
+                <strong id="waveValue">1 / 2</strong>
+            </div>
+            <div class="hud__item">
+                <span>敌军</span>
+                <strong id="enemyValue">12</strong>
+            </div>
+            <div class="hud__item">
+                <span>装甲</span>
+                <strong id="livesValue">3</strong>
+            </div>
+            <div class="hud__item hud__item--base">
+                <span>基地</span>
+                <strong id="baseValue">安全</strong>
+            </div>
+        </section>
+
+        <div class="game-layout">
+            <section class="game-stage" id="gameStage" aria-label="浪尖儿社区保卫战游戏地图">
+                <canvas id="gameCanvas" width="960" height="600" tabindex="0" aria-label="坦克大战画布"></canvas>
+
+                <div class="game-overlay" id="startOverlay">
+                    <div class="overlay-panel">
+                        <p class="overlay-panel__eyebrow">LANGJIAN COMMUNITY · ZZC</p>
+                        <h1>保卫浪尖儿社区</h1>
+                        <p>击退两波敌军，保护中央基地。</p>
+                        <div class="mission-stats" aria-label="任务信息">
+                            <span><strong>02</strong><small>波次</small></span>
+                            <span><strong>03</strong><small>装甲</small></span>
+                            <span><strong>ZZC</strong><small>地图标识</small></span>
+                        </div>
+                        <div class="difficulty" role="group" aria-label="选择游戏难度">
+                            <button type="button" class="difficulty__button active" data-difficulty="normal">标准</button>
+                            <button type="button" class="difficulty__button" data-difficulty="hard">挑战</button>
+                        </div>
+                        <button class="command-button" id="startButton" type="button">开始作战</button>
+                        <p class="key-guide"><kbd>WASD</kbd> / <kbd>方向键</kbd> 移动 <span>·</span> <kbd>SPACE</kbd> 发射</p>
+                    </div>
+                </div>
+
+                <div class="game-overlay" id="pauseOverlay" hidden>
+                    <div class="overlay-panel overlay-panel--compact">
+                        <p class="overlay-panel__eyebrow">MISSION PAUSED</p>
+                        <h2>战斗暂停</h2>
+                        <button class="command-button" id="resumeButton" type="button">继续作战</button>
+                    </div>
+                </div>
+
+                <div class="game-overlay" id="resultOverlay" hidden>
+                    <div class="overlay-panel overlay-panel--compact">
+                        <p class="overlay-panel__eyebrow" id="resultEyebrow">MISSION COMPLETE</p>
+                        <h2 id="resultTitle">浪尖儿社区安全</h2>
+                        <p id="resultMessage"></p>
+                        <div class="result-score"><span>本局得分</span><strong id="resultScore">0000</strong></div>
+                        <button class="command-button" id="restartButton" type="button">重新作战</button>
+                    </div>
+                </div>
+            </section>
+
+            <aside class="mission-rail" aria-label="任务简报">
+                <div class="rail-status"><span id="railStatusDot" aria-hidden="true"></span><span id="railState">READY TO DEPLOY</span></div>
+                <div class="rail-code">ZZC<span>/01</span></div>
+                <p class="rail-title">浪尖儿社区防区</p>
+                <p class="rail-copy">以浪尖儿社区地图为战场，守住底部基地，穿过两波敌军的火力线。</p>
+                <div class="rail-rule"></div>
+                <dl class="rail-data">
+                    <div><dt>地图</dt><dd>LANGJIAN</dd></div>
+                    <div><dt>任务</dt><dd id="railObjective">DEFEND BASE</dd></div>
+                    <div><dt>波次</dt><dd id="railWave">01 / 02</dd></div>
+                </dl>
+                <div class="rail-key"><span>CONTROL</span><strong>WASD / ARROWS</strong><strong>SPACE TO FIRE</strong></div>
+            </aside>
+        </div>
+
+        <section class="touch-controls" aria-label="触屏操作区">
+            <div class="direction-pad">
+                <button class="control-button control-button--up" type="button" data-control="up" aria-label="向上移动" title="向上移动">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>
+                </button>
+                <button class="control-button control-button--left" type="button" data-control="left" aria-label="向左移动" title="向左移动">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+                </button>
+                <button class="control-button control-button--down" type="button" data-control="down" aria-label="向下移动" title="向下移动">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                </button>
+                <button class="control-button control-button--right" type="button" data-control="right" aria-label="向右移动" title="向右移动">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+                </button>
+            </div>
+            <button class="fire-button" type="button" data-control="fire" aria-label="发射炮弹" title="发射炮弹">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
+            </button>
+        </section>
+
+        <footer class="game-footer">
+            <p><strong>ZZC</strong> · 赵梓晨</p>
+            <p>华南理工大学 · 电子科学与技术</p>
+        </footer>
+        <p class="sr-only" id="gameAnnouncer" aria-live="polite"></p>
+    </main>
+
+    <script src="js/game.js" defer></script>
+</body>
+</html>
